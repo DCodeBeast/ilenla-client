@@ -1,0 +1,79 @@
+.accountBanner {
+    height: 400px;
+position: relative;
+}
+.accountPhoto {
+    position: absolute;
+    bottom: -50px;
+    left:40px;
+    width: 150px;
+    height: 150px;
+    background-color: white;
+    border: 2px solid black;
+    border-radius: 50%;
+    z-index: 50;
+}
+.accountPhoto > form > div >div > div> div.uploader-overlay {
+    border-radius: 50% !important;
+}
+.accountPhoto >form > div >div > div.uploader-input {
+    border: none !important;
+}
+.accountPhoto > div {
+    border-radius: 50%;
+}
+.accountShareIcon, .moreIcon, .socialIcon, .socialIcon a{
+    cursor: pointer;
+    position: relative;
+    color: gray;
+}
+.accountShareIcon:hover, .moreIcon:hover, .socialIcon:hover, .socialIcon a:hover{
+  
+    color: black;
+}
+.toggleMenu {
+    position:absolute;
+    top: 50px;
+    right:20px;
+    background: #80808075;
+    min-width: 200px;
+    z-index: 100;
+}
+.toggleMenu ul {
+    margin-bottom: 0px;
+    padding: 0;
+
+}
+.toggleMenu ul li {
+    /* padding: 13px 15px; */
+    border-bottom: 2px solid gray;
+    color: black;
+    display: flex;
+    align-items: center;
+    padding: 0;
+    margin: 0;
+}
+.toggleMenu ul li a{
+    color: black;
+    display: flex;
+    padding: 13px 15px;
+    align-items: center;
+    cursor: pointer;
+    /* height: 100%; */
+    width: 100%;
+    /* background-color: red; */
+}
+
+@media only screen and (max-width:600px) {
+    .accountHeadlineRow {
+        flex-direction: column-reverse !important;
+    }
+    .accountShareIcon, .moreIcon, .socialIcon{
+        margin-left: 15px !important;
+    }
+}
+@media only screen and (max-width:425px) {
+    .accountContainer {
+        padding: 10px !important;
+    }
+}

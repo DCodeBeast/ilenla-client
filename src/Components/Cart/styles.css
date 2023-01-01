@@ -1,0 +1,89 @@
+.cart {
+    position: fixed;
+    bottom: 0;
+    width: 300px;
+    right: 0;
+    background: #00000075 ;
+    border: 1px solid gray;
+    border-radius: 10px 0px 0px 0px;
+}
+.cartBody {
+    max-height: 100px;
+    overflow-y: auto;
+}
+.cartPhoto {
+    width: 50px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    position: relative;
+}
+.cartClose {
+    position: absolute;
+    right: 0;
+    top: 0;
+    background-color:wheat;
+    color: black;
+    border-radius: 10px 0px 0% 50%;
+    width: 15px;
+    height: 15px;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+}
+.cartClose:hover{
+    background-color: white;
+}
+.cartClose svg {
+    width: 100%;
+}
+.cartClear {
+    color: rgba(247, 153, 108, 0.89);
+    cursor: pointer;
+}
+.cartPhoto img {
+    width: 100%;
+    border-radius: 5px;
+
+}
+.cartTitle, .cartTitle a {
+    font-size: 14px;
+    color: white ;
+    text-transform: capitalize;
+}
+.cartTitle:hover, .cartTitle a:hover {
+    color: wheat;
+}
+.cartTerms {
+    color: white;
+    font-size: 10px !important;
+    line-height: 0;
+}
+.cartTermsAlt {
+    color: wheat;
+}
+.cartTermsAlt:hover{
+    color: rgba(245, 222, 179, 0.601);
+}
+.cartEmpty {
+    color: silver;
+}
+.disabledBtn {
+    color: #ffffff59 !important;
+    background-color: #06376661 !important;
+}
+
+.cartText {
+    font-size: 12px;
+}
+.cartTotal {
+    color: white;
+}
+.cartBtn, .cartBtn:hover {
+    color:white;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}

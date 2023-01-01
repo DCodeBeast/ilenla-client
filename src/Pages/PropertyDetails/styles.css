@@ -1,0 +1,137 @@
+.propertyImage {
+  width: 100%;
+  height: 480px;
+}
+.propertyImage img {
+  width: 100%;
+  height: 100%;
+  border-radius: 10px;
+}
+.propertyListing {
+  background-color: #d77a19;
+  padding: 5px;
+  border-radius: 5px;
+  color: white;
+  text-transform: capitalize;
+}
+.propTitle {
+  text-transform: capitalize;
+}
+.propLocation {
+  text-transform: capitalize;
+}
+.propLocationIcon {
+  background-color: #1976d287;
+  border-radius: 5px;
+  padding: 10px;
+  cursor: pointer;
+}
+.propLocationIcon svg {
+  color: white;
+}
+.propFeatures {
+  border: 2px solid rgb(229, 232, 235);
+  border-radius: 5px;
+  font-size: 12px;
+  color: #d77a19;
+  background: white;
+}
+.propFeatureItem {
+  background: #80808036;
+  border-radius: 5px;
+}
+.propFeatureTitle {
+  color: gray;
+  font-size: 14px !important;
+}
+.filterTitle {
+  padding: 10px;
+  
+}
+/* #d77a19 */
+.propFeatureIcon {
+  color: #1976d287;
+}
+.propSubIcon span {
+  font-size: 10px !important;
+  cursor: pointer;
+}
+.propFeatureDetail {
+  white-space: nowrap;
+}
+.propSale {
+  border: 2px solid rgb(229, 232, 235);
+  border-radius: 5px;
+}
+.propHero {
+  color: gray;
+}
+.buyDealBtn {
+  width: 100%;
+  padding: 13px !important;
+  border-radius: 10px;
+}
+
+.tableContent {
+  overflow-y: scroll;
+  height: 200px;
+  width: 100%;
+}
+.offerRow {
+  text-align: center;
+  padding: 10px;
+}
+
+.offerHeader {
+  /* background-color: red; */
+  color: gray;
+}
+.offerRow {
+  width: 100%;
+  font-size: 12px;
+  /* background-color: blue; */
+}
+.propertyTitle {
+  font-size: 13px;
+}
+.videoContainer > div {
+  width: 100%;
+  text-align: center;
+}
+.propertySectionContainer {
+  padding: 0px 40px;
+}
+.propertyAlike {
+  padding: 0px 20px;
+  overflow-y: auto;
+  background: #40808bb5;
+}
+.similarPropContainer {
+ 
+  /* min-width: 600px; */
+  overflow-x: auto;
+  display: flex;
+}
+.similarPropItem {
+    min-width: 300px
+}
+@media only screen and (max-width: 1200px) {
+  .propFeatureItem:nth-of-type(1),
+  .propFeatureItem:nth-of-type(2) {
+    margin-bottom: 15px !important;
+  }
+}
+@media only screen and (max-width: 900px) {
+  .propFeatureItem:nth-of-type(1),
+  .propFeatureItem:nth-of-type(2) {
+    margin-bottom: 10px !important;
+  }
+}
+@media only screen and (max-width: 600px) {
+  .propertySectionContainer {
+    padding: 20px 0px;
+  }
+  .propertyAlike {
+    padding: 0;
+  }
+}

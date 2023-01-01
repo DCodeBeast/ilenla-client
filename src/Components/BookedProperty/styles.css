@@ -1,0 +1,45 @@
+
+.bookingItem {
+    position: relative;
+    /* height: 300px; */
+}
+.bookingPhoto {
+    width: 200px;
+    height: 150px;
+    
+}
+.bookingPhoto img {
+    width: 100%;
+    height: 100%;
+}
+.bookingClose {
+    position: absolute;
+    top: 21px;
+    right: 0;
+    cursor: pointer;
+    background-color:black;
+    color: white;
+    border-radius: 10px 0px 0% 50%;
+    width: 30px;
+    height: 30px;
+}
+.bookingTitleAlt a{
+    white-space: wrap;
+    font-size: 15px;
+    text-align: left;
+    text-transform: capitalize;
+}
+.bookingPrice {
+    font-weight: 600;
+}
+
+@media only screen and (max-width:600px){
+    .bookingItem {
+        width: 50% !important;
+    }
+}
+@media only screen and (max-width:420px){
+    .bookingItem {
+        width: 100% !important;
+    }
+}

@@ -1,0 +1,15 @@
+.offerContainer h5 {
+    font-size: 16px;
+}
+.offerBtn {
+    justify-content: right;
+}
+
+@media only screen and (max-width:700px) {
+    .offerText {
+        display: none;
+    }
+    .offerBtn {
+        justify-content: center;
+    }
+}

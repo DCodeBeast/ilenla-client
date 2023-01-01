@@ -1,0 +1,20 @@
+.gridSetting {
+  border-width: 2px;
+  border: 1px solid rgb(229, 232, 235);
+  cursor: pointer;
+
+}
+.gridSetting:hover{
+  border: 3px solid rgb(229, 232, 235);
+}
+.gridSetting>div.active {
+  background-color: rgb(243, 251, 254);
+}
+.windowIcon {
+  border-right: 1px solid rgb(229, 232, 235);
+}
+.gridSetting>div, .windowIcon, .gridIcon {
+  display: flex;
+  align-items: center;
+  justify-content:center
+}

@@ -1,0 +1,10 @@
+label {
+    text-transform: capitalize;
+    font-size: 10px;
+    font-family: 'Poppins', sans-serif !important;
+}
+span {
+    font-size: 12px !important;
+    font-family: 'Poppins', sans-serif !important;
+
+}

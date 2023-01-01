@@ -1,0 +1,36 @@
+
+.profile {
+    height: 200px;
+position: relative;
+background-color: rgba(13, 2, 2, 0.107);
+width: 150px;
+height: 150px ;
+}
+
+.photo {
+    position: absolute;
+    /* bottom: -50px; */
+    /* left:40px; */
+    width: 150px;
+    height: 150px;
+    background-color: white;
+    border: 2px solid black;
+    border-radius: 50%;
+    z-index: 50;
+}
+.uploader-input {
+    border-bottom: none;
+}
+.photo > form > div >div > div> div.uploader-overlay {
+    border-radius: 50% !important;
+}
+.photo > div {
+    border-radius: 50% !important;
+
+}
+
+@media only screen and (max-width:1000px){
+    .photo {
+        position:relative;
+    }
+}

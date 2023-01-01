@@ -1,0 +1,17 @@
+.filterTitle {
+    font-weight: 500 ;
+    font-size: 16px ;
+    text-transform: capitalize;
+}
+.filterHero {
+    font-weight: 600 ;
+    font-size: 20px ;
+    text-transform: capitalize;
+}
+.sidebarFilterCOntainer{
+   
+   padding-bottom: 100px;
+}
+.button {
+    font-family: 'Poppins', sans-serif !important;
+}

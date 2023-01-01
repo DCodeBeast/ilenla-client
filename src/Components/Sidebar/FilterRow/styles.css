@@ -1,0 +1,51 @@
+.filterTitle {
+    font-weight: 500 ;
+    font-size: 16px ;
+    text-transform: capitalize;
+    /* padding: 12px 12px 12px 5px; */
+    white-space: nowrap;
+}
+.filterOption {
+    display: flex;
+    justify-content: space-between;
+    font-weight: 400 ;
+    font-size: 14px ;
+    margin: 0 !important;
+}
+input {
+    cursor: text;
+  display: flex;
+  background-color: rgb(255, 255, 255);
+  border-radius: 10px;
+  border-width: 2px;
+  border: 1px solid rgb(229, 232, 235);
+  outline: none;
+  padding: 12px 0px 12px 5px;
+
+}
+input:hover, input:focus{
+    border: 3px solid rgb(229, 232, 235);
+}
+.filterCurrency> div {
+    padding: 12px !important;
+    padding-right: 32px !important;
+}
+formControl {
+    padding: 0;
+}
+.filterRow {
+    padding: 0px 0px 0px 5px;
+
+}
+.filterRowHover {
+    flex-wrap: nowrap !important;
+ background: rgb(1 7 12 / 18%);
+
+    border-bottom: 1px solid gray;
+}
+.filterRowHover:hover {
+ background-color: rgba(128, 128, 128, 0.597);
+
+ border-radius: 5px;
+ cursor: pointer;
+}

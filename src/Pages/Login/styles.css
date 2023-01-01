@@ -1,0 +1,37 @@
+.loginContainer {
+    width: 50%;
+    white-space: nowrap;
+    /* background: #8080809e; */
+    background: #80808038;
+    border-radius: 10px;
+
+}
+.loginContainer a {
+    color: gray;
+}
+.loginControl a {
+    font-size: 12px
+}
+.colorBg a{
+    color: black;
+    display: block;
+    font-weight: 800 ;
+}
+legend > span, .css-1ftyaf0 > span {
+    color: black !important;
+}
+@media only screen and (max-width:765px ) {
+    .loginContainer {
+        width: 70%;
+    }
+}
+@media only screen and (max-width:600px ) {
+    .loginContainer {
+        width: 80%;
+    }
+}
+@media only screen and (max-width:425px ) {
+    .loginContainer {
+        width: 100%;
+    }
+}

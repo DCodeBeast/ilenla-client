@@ -1,0 +1,12 @@
+.customInput {
+    border: none !important;
+}
+.customInput > div > div> input:hover, .customInput > div > div > input:focus {
+    border: none !important;
+    /* color: white !important; */
+
+}
+.customInput > div > div >  legend > span {
+   color: white !important;
+
+}

@@ -1,0 +1,81 @@
+.nextBtn:hover, .backBtn:hover, .nextBtnAlt:hover {
+    color: black;
+}
+.bookingBody {
+    min-height: 500px;
+    text-align: center;
+    /* overflow: auto; */
+    height: 70vh;
+}
+.bookingTitle {
+    /* color:white; */
+    font-size: 2.4rem;
+    font-weight: 400;
+    white-space: nowrap;
+    text-align: left;
+    border-bottom: 1px solid gray;
+    background: rgba(25, 118, 210, 0.23);
+    color: gray;
+}
+.bookingHero {
+    position: sticky;
+    top: 120px;
+    background-color: #1976d287;
+    z-index: 100;
+    color: white;
+}
+.bookingContentArea {
+    padding: 20px 0px;
+    overflow: auto;
+    height: 61vh;
+    background-color: #000000e3;
+    z-index: -1;
+}
+
+.css-16ubnlw-MuiStepLabel-labelContainer, .css-qivjh0-MuiStepLabel-label.Mui-active {
+        color: white  !important;
+}
+
+/* for desktop */
+.whatsapp_float_container {
+    position: fixed;
+    bottom: 100px;
+    right: 20px;
+    z-index: 1000;
+    color: white;
+    background-color: #0000002e;
+
+}
+.whatsapp_float {
+    /* position: fixed; */
+    width: 60px;
+    height: 60px;
+    bottom: 60px;
+    right: 40px;
+    background-color: #25d366;
+    color: #FFF;
+    border-radius: 50px;
+    text-align: center;
+    font-size: 30px;
+    box-shadow: 2px 2px 3px #999;
+    z-index: 1000;
+}
+
+.whatsapp-icon {
+    margin-top: 10px;
+}
+
+/* for mobile */
+@media screen and (max-width: 767px) {
+    .whatsapp-icon {
+        margin-top: 10px;
+    }
+
+    .whatsapp_float {
+        width: 40px;
+        height: 40px;
+        bottom: 20px;
+        right: 10px;
+        font-size: 22px;
+    }
+}

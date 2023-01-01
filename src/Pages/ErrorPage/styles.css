@@ -1,0 +1,9 @@
+.errorBtn {
+    font-size: 40px !important;
+}
+
+@media only screen and (max-width:600px) {
+    .errorBtn {
+        font-size: 20px !important;
+    }
+}

@@ -1,0 +1,9 @@
+.notifContainer {
+    padding: 40px;
+}
+
+@media only screen and (max-width:700px){
+    .notifContainer {
+        padding: 10px;
+    }  
+}

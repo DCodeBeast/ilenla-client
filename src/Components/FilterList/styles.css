@@ -1,0 +1,18 @@
+.filterList {
+  border-width: 2px;
+  border: 1px solid rgb(229, 232, 235);
+  cursor: pointer;
+
+}
+.filterList:hover{
+  border: 3px solid rgb(229, 232, 235);
+}
+.filterList>div.active {
+  background-color: rgb(243, 251, 254);
+}
+
+.filterList>div, .filterIcon {
+  display: flex;
+  align-items: center;
+  justify-content:center
+}

@@ -1,0 +1,21 @@
+
+.apartmentBg {
+    background-color: yellow;
+    width: 220px;
+  }
+  .landBg {
+    background-color: #fb8500;
+    width: 220px;
+  }
+  .homeBg {
+    background-color: #cac0b4;
+    width: 220px;
+  }
+  .typewriter > span h1, .Typewriter__wrapper h1 {
+    display: inline-block !important;
+    font-size: 20px;
+    color: white;
+  }
+  .btn-go {
+    background-color: orange;
+  }

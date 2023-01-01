@@ -1,0 +1,16 @@
+.inspectionCard {
+    
+}
+.inspectionCardInner:hover, .activeInspectionCardInner {
+    background-color: white;
+    cursor: pointer;
+}
+.checkIcon {
+    color: darkgray;
+}
+.activeInspectionCardInner{
+    background-color: white  !important;
+}
+.activeCheckIcon {
+    color: green;
+}

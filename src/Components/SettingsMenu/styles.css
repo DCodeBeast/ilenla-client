@@ -1,0 +1,47 @@
+.settingsMenu {
+   /* background-color: red; */
+}
+.settingsMenuTitle {
+    /* padding: 0 !important; */
+    width: 100% !important;
+    /* background-color: green !important; */
+    display: block !important;
+    text-align: left !important;
+    height: 40px;
+    font-family: 'Poppins', sans-serif !important;
+
+    min-height: auto !important;
+} 
+.settingsMenuTitle a {
+    font-family: 'Poppins', sans-serif !important;
+
+}
+.settingsMenuTitle span {
+    width: 100% !important;
+}
+.settingsMenuTabContainer {
+    display: flex;
+    justify-content: space-between;
+    width: 250px;
+    border-right:1px solid rgb(229, 232, 235);
+  height: calc(100vh - 100px);
+    align-items: flex-start;
+    position: fixed;
+    /* background-color: blue !important; */
+
+}
+.css-1cgx7kx-MuiTabs-scroller {
+    width: 100% !important;
+    height: 40px !important;
+}
+.settingsContent {
+    padding: 0px  40px;
+}
+@media only screen and (max-width:1000px){
+    .settingsMenuContainer{
+        display: none !important;
+    }
+    .settingsContent {
+        padding: 0px ;
+    }
+}

@@ -1,0 +1,21 @@
+.accountMenu {
+    padding-left: 40px;
+}
+.accountMenuTitle {
+    padding: 0 !important;
+    
+} 
+.accountMenuTabContainer {
+    display: flex;
+    justify-content: space-between;
+} 
+.accountMenuTabContainer > div {
+    overflow: auto !important;
+
+}
+
+@media only screen and (max-width:425px){
+    .accountMenu {
+        padding-left: 15px;
+    }
+}

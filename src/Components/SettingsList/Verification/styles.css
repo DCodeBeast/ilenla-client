@@ -1,0 +1,16 @@
+.verificationCircle{
+    border-radius: 50px;
+    border: 2px solid blue;
+    padding: 20px;
+    font-size: 25px;
+}
+.verification ul li {
+    list-style-type: circle;
+    list-style-position: inside;
+}
+
+@media only screen and (max-width:700px){
+    .verifyBtn {
+        margin-top:20px
+    }
+}
