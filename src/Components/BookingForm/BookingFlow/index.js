@@ -25,6 +25,8 @@ import ControlPointIcon from "@mui/icons-material/ControlPoint";
 import WhatsAppIcon from "@mui/icons-material/WhatsApp";
 import FastForwardIcon from '@mui/icons-material/FastForward';
 import InspectionMode from "../InspectionMode";
+import { PaystackButton } from "react-paystack";
+import BookingReview from "../BookingReview";
 
 const QontoConnector = styled(StepConnector)(({ theme }) => ({
   [`&.${stepConnectorClasses.alternativeLabel}`]: {
@@ -183,19 +185,57 @@ ColorlibStepIcon.propTypes = {
 const steps = [
   "Booked Property(s)",
   "Choose Inspection Mode",
-  "Pay Inspection Fee",
+  "Review Your Appointment ",
   "Create an ad",
 ];
+
+
 
 export default function BookingFlow() {
   const dispatch = useDispatch();
   const [startDate, setStartDate] = useState(new Date());
   let { cart } = useSelector((state) => state.cart);
   const { cartTotal } = useSelector((state) => state.cart);
+  const [booking, setBooking] = useState({
+    properties:[],
+    mode:'',
+    inspectionDays:[],
+    inspectionTime:'',
+    email:'',
+    userId:'',
+    userPhone:'',
+    userAddress:'',
+    amount_paid: null,
+    pay_stack_ref: "",
+    amount_due: null,
+    payment_method: null,
+    payment_status:'',
+    appointmentDays:[]
+  })
+
+  const config = {
+    reference: new Date().getTime().toString(),
+    email: booking.email,
+    amount: Number(booking?.amount_paid * 100)?.toFixed(2),
+    metadata: {
+      amount_paid: Number(booking?.amount_paid)?.toFixed(2),
+      
+    },
+
+  publicKey: "pk_test_cd5d1c48e331b8a865065248be6c5292f510e932",
+
+  };
 
   useEffect(() => {
     dispatch({ type: ADD_TO_CART });
   }, []);
+  useEffect(() => {
+    setBooking({...booking, properties:[...cart]})
+  }, [cart]);
+
+
+  console.log('booking',booking)
+  console.log("bookingVal", booking.inspectionDays.map(val => new Date(val)));
 
   const [activeStep, setActiveStep] = useState(0);
   const [completed, setCompleted] = useState({});
@@ -246,6 +286,25 @@ export default function BookingFlow() {
     setCompleted({});
   };
 
+  const handlePaystackSuccessAction = (reference) => {
+    // Implementation for whatever you want to do with reference and after success call.
+    // setOrderData({ ...orderData, pay_stack_ref: reference?.reference });
+  
+  };
+
+    // you can call this function anything
+    const handlePaystackCloseAction = () => {
+      // implementation for  whatever you want to do when the Paystack dialog closed.
+      // console.log('closed')
+    };
+  
+  const componentProps = {
+    ...config,
+    text: "Proceed To Checkout",
+    onSuccess: (reference) => handlePaystackSuccessAction(reference),
+    onClose: handlePaystackCloseAction,
+  };
+
   return (
     <Box sx={{ width: "100%" }} spacing={4}>
       <Stepper
@@ -270,6 +329,11 @@ export default function BookingFlow() {
               {index === 0 && (
                 <span style={{ color: "red" }}>
                   {cart?.length} property(s) selected
+                </span>
+              )}
+              {index === 1 && (
+                <span style={{ color: "red", textTransform:'Capitalize' }}>
+                  {booking.mode} Mode Selected
                 </span>
               )}
             </StepLabel>
@@ -322,7 +386,7 @@ export default function BookingFlow() {
                 <Grid>
                   <Grid className="bookingTitle" px={2}>Choose Inspection Mode</Grid>
                   <Grid className="bookingContentArea" py={5}>
-                  <InspectionMode/>
+                  <InspectionMode setBooking={setBooking} booking={booking}/>
                     {/* <DatePicker
                       selected={startDate}
                       onChange={(date) => setStartDate(date)}
@@ -350,9 +414,15 @@ export default function BookingFlow() {
               )}
               {activeStep === 2 && (
                 <Grid>
-                  <Grid className="bookingTitle">Pay Inspection Fee</Grid>
+                  <Grid className="bookingTitle" px={2}>Review Your Appointment</Grid>
 
-                  <Grid className="bookingContentArea" py={5}></Grid>
+                  <Grid className="bookingContentArea" py={5}>
+                    <BookingReview appointmentDays={booking.appointmentDays}/>
+                  <PaystackButton
+                      className="cart-checkout"
+                      {...componentProps}
+                    />
+                  </Grid>
                 </Grid>
               )}
             </Grid>

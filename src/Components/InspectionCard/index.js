@@ -25,7 +25,7 @@ export default function InspectionCard({ mode, handleInspectionMode, activeMode}
  
 
   return (
-    <Grid item xs={4} className="inspectionCard" onClick={() => handleInspectionMode(mode)}>
+    <Grid item  xs={4} className="inspectionCard" onClick={() => handleInspectionMode(mode)}>
       <Grid item xs={12}>
         <Box
           sx={{
