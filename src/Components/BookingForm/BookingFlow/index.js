@@ -9,6 +9,7 @@ import Check from "@mui/icons-material/Check";
 import SettingsIcon from "@mui/icons-material/Settings";
 import GroupAddIcon from "@mui/icons-material/GroupAdd";
 import VideoLabelIcon from "@mui/icons-material/VideoLabel";
+import ReplyAllIcon from '@mui/icons-material/ReplyAll';
 import StepConnector, {
   stepConnectorClasses,
 } from "@mui/material/StepConnector";
@@ -23,10 +24,12 @@ import { ADD_TO_CART } from "../../../constants/actionTypes";
 import BookedProperty from "../../BookedProperty";
 import ControlPointIcon from "@mui/icons-material/ControlPoint";
 import WhatsAppIcon from "@mui/icons-material/WhatsApp";
-import FastForwardIcon from '@mui/icons-material/FastForward';
+import FastForwardIcon from "@mui/icons-material/FastForward";
 import InspectionMode from "../InspectionMode";
 import { PaystackButton } from "react-paystack";
 import BookingReview from "../BookingReview";
+
+import './styles.css'
 
 const QontoConnector = styled(StepConnector)(({ theme }) => ({
   [`&.${stepConnectorClasses.alternativeLabel}`]: {
@@ -189,29 +192,27 @@ const steps = [
   "Create an ad",
 ];
 
-
-
 export default function BookingFlow() {
   const dispatch = useDispatch();
   const [startDate, setStartDate] = useState(new Date());
   let { cart } = useSelector((state) => state.cart);
   const { cartTotal } = useSelector((state) => state.cart);
   const [booking, setBooking] = useState({
-    properties:[],
-    mode:'',
-    inspectionDays:[],
-    inspectionTime:'',
-    email:'',
-    userId:'',
-    userPhone:'',
-    userAddress:'',
+    properties: [],
+    mode: "",
+    inspectionDays: [],
+    inspectionTime: "",
+    email: "",
+    userId: "",
+    userPhone: "",
+    userAddress: "",
     amount_paid: null,
     pay_stack_ref: "",
     amount_due: null,
     payment_method: null,
-    payment_status:'',
-    appointmentDays:[]
-  })
+    payment_status: "",
+    appointmentDays: [],
+  });
 
   const config = {
     reference: new Date().getTime().toString(),
@@ -219,23 +220,23 @@ export default function BookingFlow() {
     amount: Number(booking?.amount_paid * 100)?.toFixed(2),
     metadata: {
       amount_paid: Number(booking?.amount_paid)?.toFixed(2),
-      
     },
 
-  publicKey: "pk_test_cd5d1c48e331b8a865065248be6c5292f510e932",
-
+    publicKey: "pk_test_cd5d1c48e331b8a865065248be6c5292f510e932",
   };
 
   useEffect(() => {
     dispatch({ type: ADD_TO_CART });
   }, []);
   useEffect(() => {
-    setBooking({...booking, properties:[...cart]})
+    setBooking({ ...booking, properties: [...cart] });
   }, [cart]);
 
-
-  console.log('booking',booking)
-  console.log("bookingVal", booking.inspectionDays.map(val => new Date(val)));
+  console.log("booking", booking);
+  console.log(
+    "bookingVal",
+    booking.inspectionDays.map((val) => new Date(val))
+  );
 
   const [activeStep, setActiveStep] = useState(0);
   const [completed, setCompleted] = useState({});
@@ -289,15 +290,14 @@ export default function BookingFlow() {
   const handlePaystackSuccessAction = (reference) => {
     // Implementation for whatever you want to do with reference and after success call.
     // setOrderData({ ...orderData, pay_stack_ref: reference?.reference });
-  
   };
 
-    // you can call this function anything
-    const handlePaystackCloseAction = () => {
-      // implementation for  whatever you want to do when the Paystack dialog closed.
-      // console.log('closed')
-    };
-  
+  // you can call this function anything
+  const handlePaystackCloseAction = () => {
+    // implementation for  whatever you want to do when the Paystack dialog closed.
+    // console.log('closed')
+  };
+
   const componentProps = {
     ...config,
     text: "Proceed To Checkout",
@@ -332,7 +332,7 @@ export default function BookingFlow() {
                 </span>
               )}
               {index === 1 && (
-                <span style={{ color: "red", textTransform:'Capitalize' }}>
+                <span style={{ color: "red", textTransform: "Capitalize" }}>
                   {booking.mode} Mode Selected
                 </span>
               )}
@@ -360,15 +360,20 @@ export default function BookingFlow() {
                     container
                     justifyContent="space-between"
                     alignItems="center"
-                    className='bookingTitle'
-                   px={2}
+                    className="bookingTitle"
+                    px={2}
                   >
-                    <Grid >
-                      Bookings ({cart?.length})
-                    </Grid>
+                    <Grid>Bookings ({cart?.length})</Grid>
 
                     <Grid>
-                      <Button variant="contained" endIcon={<ControlPointIcon />}>
+                      <Button
+                        variant="contained"
+                        endIcon={<ControlPointIcon />}
+                        size='small'
+                        as='a'
+                        href='/properties'
+                        className='back-btn'
+                      >
                         Add More
                       </Button>
                     </Grid>
@@ -384,44 +389,104 @@ export default function BookingFlow() {
               )}
               {activeStep === 1 && (
                 <Grid>
-                  <Grid className="bookingTitle" px={2}>Choose Inspection Mode</Grid>
+              
+                  <Grid
+                    container
+                    justifyContent="space-between"
+                    alignItems="center"
+                    className="bookingTitle"
+                    px={2}
+                  >
+                    <Grid>
+                    Choose Inspection Mode
+                    </Grid>
+
+                    <Grid>
+                      <Button
+                        variant="contained"
+                        endIcon={<ReplyAllIcon />}
+                        size='small'
+                        as='a'
+                        href='/properties'
+                        className='back-btn'
+                      >
+                        Back To Properties
+                      </Button>
+                    </Grid>
+                  </Grid>
+
                   <Grid className="bookingContentArea" py={5}>
-                  <InspectionMode setBooking={setBooking} booking={booking}/>
+                    <InspectionMode setBooking={setBooking} booking={booking} />
                     {/* <DatePicker
                       selected={startDate}
                       onChange={(date) => setStartDate(date)}
                       inline
                     /> */}
-                    <Grid className="whatsapp_float_container" container md={6} alignItems='center' justifyContent='flex-end'>
-                    <Grid xs={10}>
-                    <span>Engage the Super Agent before choosing inspection date</span>
-                    <FastForwardIcon/>
-
-                    </Grid>
-&nbsp;
-                    <a
-                      href="https://wa.me/2348100000000"
-                      class="whatsapp_float"
-                      target="_blank"
-                      rel="noopener noreferrer"
+                    <Grid
+                      className="whatsapp_float_container"
+                      container
+                      md={6}
+                      alignItems="center"
+                      justifyContent="flex-end"
                     >
-                      <WhatsAppIcon className="whatsapp-icon" />
-                    </a>
+                      <Grid xs={10}>
+                        <span>
+                          Engage the Super Agent before choosing inspection date
+                        </span>
+                        <FastForwardIcon />
+                      </Grid>
+                      &nbsp;
+                      <a
+                        href="https://wa.me/2348100000000"
+                        class="whatsapp_float"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
+                        <WhatsAppIcon className="whatsapp-icon" />
+                      </a>
                     </Grid>
-                
                   </Grid>
                 </Grid>
               )}
               {activeStep === 2 && (
                 <Grid>
-                  <Grid className="bookingTitle" px={2}>Review Your Appointment</Grid>
+                  <Grid
+                    container
+                    justifyContent="space-between"
+                    alignItems="center"
+                    className="bookingTitle"
+                    px={2}
+                  >
+                    <Grid>
+                    Review Your Appointment
+                    </Grid>
+
+                    <Grid>
+                      <Button
+                        variant="contained"
+                        endIcon={<ReplyAllIcon />}
+                        size='small'
+                        as='a'
+                        href='/properties'
+                        className='back-btn'
+                      >
+                        Back To Properties
+                      </Button>
+                    </Grid>
+                  </Grid>
 
                   <Grid className="bookingContentArea" py={5}>
-                    <BookingReview appointmentDays={booking.appointmentDays}/>
-                  <PaystackButton
+                    <BookingReview
+                      config={config}
+                      handlePaystackCloseAction={handlePaystackCloseAction}
+                      handlePaystackSuccessAction={handlePaystackSuccessAction}
+                      appointmentDays={booking.inspectionDays}
+                      inspectionTime={booking.inspectionTime}
+                    />
+                    {/* <PaystackButton
                       className="cart-checkout"
                       {...componentProps}
-                    />
+                    /> */}
                   </Grid>
                 </Grid>
               )}

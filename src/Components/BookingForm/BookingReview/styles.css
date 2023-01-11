@@ -1,0 +1,29 @@
+.bookingPaymentOption{
+    background: transparent;
+    border: 1px solid #8080802e;
+    cursor: pointer;
+    border-radius: 5px;
+  }
+.bookingPaymentOption:hover, .bookingPaymentSelected{
+    background: transparent;
+    border: 1px solid black;
+    cursor: pointer;
+  }
+
+  button.paystack-checkout {
+    width: 100%;
+    outline: none;
+    border: none;
+    background: #17b57a;
+    border-radius: 10px;
+    padding: 10px;
+    color: wheat;
+  }
+
+  .booking-details {
+    margin-top: 20px;
+  }
+
+  th {
+    border-right:2px solid #adb5bd
+  }

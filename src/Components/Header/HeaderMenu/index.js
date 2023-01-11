@@ -6,13 +6,20 @@ import FavoriteIcon from "@mui/icons-material/Favorite";
 import HomeIcon from "@mui/icons-material/Home";
 import SettingsIcon from "@mui/icons-material/Settings";
 import { useState } from "react";
-import { Grid } from "@mui/material";
+import { Button, Grid } from "@mui/material";
 import { useRef } from "react";
+import { LOG_OUT } from "../../../constants/actionTypes";
+import { useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
 
 const HeaderMenu = ({ respScreen }) => {
   const user = JSON.parse(localStorage.getItem("profile"));
   const [show, setShow] = useState(false);
   const menuRef = useRef();
+
+  const navigate = useNavigate()
+  const dispatch = useDispatch();
+
 
   const handleShowProfileMenu = () => {
     setShow(true);
@@ -21,6 +28,11 @@ const HeaderMenu = ({ respScreen }) => {
     setTimeout(() => {
       setShow(false);
     }, 1000);
+  };
+  const handleLogout = (e) => {
+    e.preventDefault();
+    dispatch({ type: LOG_OUT });
+    navigate(-1);
   };
 
   return (
@@ -95,16 +107,16 @@ const HeaderMenu = ({ respScreen }) => {
                         </a>
                       </li>
                       <li>
-                        <a href="/logout"  className='logout'>
+                        <Button  className='logout'  onClick={handleLogout}>
                           <LoginIcon /> Logout
-                        </a>
+                        </Button>
                       </li>
                     </ul>
                   </Grid>
                 )}
               </li>
               <li>
-                <a href="/logout" style={{color:'#f7996ce3'}}>
+                <a href="#" style={{color:'#f7996ce3'}}  onClick={handleLogout}>
                   Logout <LoginIcon />
                 </a>
               </li>

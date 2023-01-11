@@ -2,10 +2,16 @@ import {
   BrowserRouter as Router,
   Routes,
   Route,
+  Outlet,
+  Navigate,
+
   useParams,
 } from "react-router-dom";
 import "./App.css";
 import ErrorPage from "./Pages/ErrorPage";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+
 import Home from "./Pages/Home";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
@@ -33,13 +39,15 @@ const App = () => {
     <AppContextProvider>
       <Router>
         <div className="App">
+        <ToastContainer />
+
           <Routes>
             <Route path="/" element={<Home />}></Route>
             <Route path="/properties">
               <Route index element={<Properties />} />
               <Route path=":id" element={<PropertyDetails />} />
             </Route>
-            <Route path="/booking">
+            <Route path="/booking" element={<PrivateOutlet />}>
               <Route index element={<Booking />} />
             </Route>
             <Route path="/settings">
@@ -61,5 +69,11 @@ const App = () => {
      </AppContextProvider>
   );
 };
+
+function PrivateOutlet() {
+  let user = JSON.parse(localStorage.getItem("profile"));
+
+  return user ? <Outlet /> : <Navigate to="/login" />;
+}
 
 export default App;

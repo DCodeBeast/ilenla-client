@@ -22,6 +22,8 @@ const InspectionMode = ({ setBooking, booking }) => {
     console.log("activeMode", 1, activeMode);
     setBooking({ ...booking, mode: mode });
   };
+  console.log("inspectionDays", booking.appointmentDays);
+
   return (
     <Grid container spacing={2}>
       {inspectionData.map((data, index) => (

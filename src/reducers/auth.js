@@ -1,14 +1,19 @@
-import { AUTH, LOGOUT } from "../constants/actionTypes";
+import { AUTH, LOG_OUT,START_LOADING,END_LOADING, SIGN_IN  } from "../constants/actionTypes";
 
-const authReducer = (state = { authData: null }, action) => {
+const authReducer = (state = { auth: null, isLoading:false }, action) => {
   switch (action.type) {
-    case AUTH:
+   
+    case SIGN_IN:
       localStorage.setItem("profile", JSON.stringify({ ...action?.data }));
       console.log(action?.data);
-      return { ...state, authData: action?.data };
-    case LOGOUT:
+      return { ...state, auth: action?.data };
+      case START_LOADING:
+        return { ...state, isLoading: true };
+      case END_LOADING:
+        return { ...state, isLoading: false };
+    case LOG_OUT:
       localStorage.clear();
-      return { ...state, authData: null };
+      return { ...state, auth: null };
     default:
       return state;
   }

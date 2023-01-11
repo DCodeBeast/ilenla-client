@@ -9,7 +9,7 @@
     font-weight: 500;
   }
   
-  button {
+  /* button {
     transition: all 0.2s ease-out;
     margin: 4px;
     cursor: pointer;
@@ -23,12 +23,12 @@
     letter-spacing: 1.3px;
     font-size: 0.6rem;
     border: 1px solid #fff;
-  }
+  } */
   
-  button:hover {
+  /* button:hover {
     background: none;
     color: #fff;
-  }
+  } */
   
   button:active {
     /* background: #fa3402; */

@@ -21,6 +21,7 @@ export const CLEAR_CART = "CLEAR_CART"
 export const CART_ACTIVE = "CART_ACTIVE"
 
 
+export const SIGN_IN = "SIGN_IN"
 export const AUTH = "AUTH"
-export const LOGOUT = "LOGOUT"
+export const LOG_OUT = "LOG_OUT"
 export const FETCH_BY_SEARCH = "FETCH_BY_SEARCH"

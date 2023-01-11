@@ -15,7 +15,8 @@ API.interceptors.request.use((req)=> {
 export const createProperty = (property) => API.post("/property", property)
 export const getAllProperties = (page) => API.get(`/property?page=${page}`);
 
-
+export const signIn = (user) => API.post(`/user/login`, user);
+export const signUp = (user) => API.post(`/user/signup`, user);
 
 
 
@@ -25,8 +26,7 @@ export const getAllProperties = (page) => API.get(`/property?page=${page}`);
 // export const likePost = (id) => API.patch(`/posts/${id}/likePost`)
 // export const comment = (value, id) => API.post(`/posts/${id}/commentPost`, {value})
 
-// export const signIn = (formData) => API.post("/users/signin", formData)
-// export const signUp = (formData) => API.post("/users/signup", formData)
+
 
 
 

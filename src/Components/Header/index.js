@@ -15,6 +15,7 @@ import { useState } from "react";
 import LoginIcon from "@mui/icons-material/Login";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import UndoIcon from '@mui/icons-material/Undo';
+import { LOG_OUT } from "../../constants/actionTypes";
 
 import {
   useMenuContext,
@@ -22,6 +23,7 @@ import {
   hideMenu,
   clearAll
 } from "../../Contexts/MenuContext";
+import { useNavigate } from "react-router-dom";
 
 const Header = () => {
   const [screenSize, getDimension] = useState({
@@ -34,6 +36,7 @@ const Header = () => {
   const user = JSON.parse(localStorage.getItem("profile"));
   const [show, setShow] = useState(false);
   const { items,  dispatch } = useMenuContext();
+  const navigate = useNavigate()
   // const [settingsMenu, setSettingsMenu] = useState("");
   const handleShowProfileMenu = () => {
     setShow(true);
@@ -79,6 +82,12 @@ const Header = () => {
   const handleMainMenu = (e) => {
     e.preventDefault()
     setIsSettingsOpen(false);
+  };
+
+  const handleLogout = (e) => {
+    e.preventDefault();
+    dispatch({ type: LOG_OUT });
+    navigate(-1);
   };
 console.log("set",items)
   return (
@@ -230,7 +239,9 @@ console.log("set",items)
                         </a>
                       </li>
                       <li>
-                        <a href="/logout"  className='logout'>
+                        <a href="#"  className='logout'
+                          onClick={handleLogout}
+                        >
                           <LoginIcon /> Logout
                         </a>
                       </li>
@@ -241,7 +252,7 @@ console.log("set",items)
                     </Grid>
              
                     &nbsp;&nbsp;
-                    <a href="/logout" style={{ color: "#f7996ce3" }}>
+                    <a href="#" style={{ color: "#f7996ce3" }}  onClick={handleLogout}>
                       Logout <LoginIcon />
                     </a>
                   </>

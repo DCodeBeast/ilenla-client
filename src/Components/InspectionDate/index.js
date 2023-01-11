@@ -4,7 +4,7 @@ import DatePicker from "react-multi-date-picker";
 import DatePanel from "react-multi-date-picker/plugins/date_panel";
 import TimePicker from "react-multi-date-picker/plugins/time_picker";
 import transition from "react-element-popper/animations/transition";
-export default function InspectionDate({setBooking, booking}) {
+export default function InspectionDate({ setBooking, booking }) {
   const today = new Date();
   const tomorrow = new Date();
 
@@ -16,40 +16,37 @@ export default function InspectionDate({setBooking, booking}) {
   const [portalTarget, setPortalTaget] = useState();
 
   useEffect(() => {
-    let appt = []
-    if(booking.inspectionDays && values.length === 0) {
-  console.log("days63646264", values, 1);
+    let appt = [];
+    if (booking.inspectionDays && values.length === 0) {
+      console.log("days63646264", values, 1);
 
-      return
-    
+      return;
     } else {
-  console.log("days63646264", values,booking.inspectionDays, 2);
+      console.log("days63646264", values, booking.inspectionDays, 2);
 
+      values.map((val) => appt.push(new Date(val)));
+      console.log("appt", appt);
 
-  values.map(val => appt.push(new Date(val)))
-  console.log('appt', appt)
-
-setBooking({...booking, inspectionDays:[...values], appointmentDays:[...appt] })
-
+      setBooking({
+        ...booking,
+        inspectionDays: [...values],
+        appointmentDays: [...appt],
+      });
     }
-    appt = []
-    
-  }, [values])
+    appt = [];
+  }, [values]);
 
   useEffect(() => {
-    if(booking.inspectionTime) {
-  console.log("timegtthhh", time, 1);
+    if (booking.inspectionTime) {
+      console.log("timegtthhh", time, 1);
 
-      return
+      return;
     } else {
-  console.log("timegtthhh", time, 2);
+      console.log("timegtthhh", time, 2);
 
-      setBooking({...booking, inspectionTime:time})
-
+      setBooking({ ...booking, inspectionTime: time });
     }
-    
-  }, [time])
-  
+  }, [time]);
 
   useEffect(() => {
     const portalDiv = document.createElement("div");
@@ -66,12 +63,17 @@ setBooking({...booking, inspectionDays:[...values], appointmentDays:[...appt] })
 
     return () => document.body.removeChild(portalDiv);
   }, []);
-  console.log("val", values.map(val => new Date(val)));
+  console.log(
+    "val",
+    values.map((val) => new Date(val))
+  );
   console.log("time", time, time?.minute);
   return (
     <Grid xs={12} container justifyContent="space-between" pt={3} px={5}>
       <Grid item xs={5}>
-        <Typography color='white' textAlign='left'>Appointment Day(s) *</Typography>
+        <Typography color="white" textAlign="left">
+          Appointment Day(s) *
+        </Typography>
         <DatePicker
           style={{
             width: "70%",
@@ -88,28 +90,31 @@ setBooking({...booking, inspectionDays:[...values], appointmentDays:[...appt] })
           maxDate={new Date().setDate(60)}
           portalTarget={portalTarget}
           plugins={[<DatePanel />]}
-      value={ booking.inspectionDays.length > 3 ? booking.inspectionDays.splice(3): booking.inspectionDays }
+          value={
+            booking.inspectionDays.length > 3 
+              ? booking.inspectionDays.splice(3)
+              : booking.inspectionDays
+          }
           animations={[transition({ duration: 800, from: 35 })]}
           onChange={setValues}
-          
         />
-        <span style={{color:'white', textAlign:'left'}}>
-        Note:You can choose upto 3 days
+        <span style={{ color: "white", textAlign: "left" }}>
+          Note:You can choose upto 3 days
         </span>
       </Grid>
-      <Grid item xs={5} style={{zIndex:'10000'}}>
-      <Typography color='white' textAlign='left'>Selected Time *</Typography>
+      <Grid item xs={5} style={{ zIndex: "10000" }}>
+        <Typography color="white" textAlign="left">
+          Selected Time *
+        </Typography>
 
         <DatePicker
           style={{
             width: "40%",
             boxSizing: "border-box",
             height: "50px",
-            
           }}
           containerStyle={{
             width: "100%",
-          
           }}
           value={booking.inspectionTime}
           onChange={setTime}

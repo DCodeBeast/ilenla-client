@@ -9,6 +9,7 @@ import Layout from "../../Components/Layout";
 import Input from "../../Components/CustomInput/Input";
 import Loader from "../../Components/Loader";
 import "./styles.css";
+import { signIn, signUp } from "../../actions/auth";
 const initialState = {
   name: "",
   phone: "",
@@ -51,11 +52,11 @@ const Login = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    //   if (isSignup) {
-    //     dispatch(usersignup(formData, navigate));
-    //   } else {
-    //     dispatch(usersignin(formData, navigate));
-    //   }
+      if (isSignup) {
+        dispatch(signUp(formData, navigate));
+      } else {
+        dispatch(signIn(formData, navigate));
+      }
   };
 
   const handleChange = (e) => {
@@ -112,9 +113,9 @@ const Login = () => {
             <Avatar style={{ textAlign: "center", margin: "0 auto" }}>
               <LockOutlinedIcon />
             </Avatar>
-            <Typography variant="h5">
-              {isSignup ? "User Sign Up" : "User Sign In"}
-            </Typography>
+            {/* <Typography variant="h5">
+              {isSignup ? " Sign Up" : " Sign In"}
+            </Typography> */}
           </Grid>
 
           <form onSubmit={handleSubmit}>
@@ -135,14 +136,9 @@ const Login = () => {
                     onChange={handleChange}
                     type="tel"
                  
-                    quarter
+  
                   />
-                  <Input
-                    name="name"
-                    label="Name"
-                    handleChange={handleChange}
-                    twothird
-                  />
+                
                 </>
               )}
 
@@ -163,7 +159,7 @@ const Login = () => {
                   required
                 />
               )}
-              {isSignup && (
+              {/* {isSignup && (
                 <Input
                   name="referrer"
                   label="Referrer Code (optional)"
@@ -171,7 +167,7 @@ const Login = () => {
                   type="text"
                   value={formData.referrer}
                 />
-              )}
+              )} */}
             </Grid>
             <Grid pt={3}>
               <Button
