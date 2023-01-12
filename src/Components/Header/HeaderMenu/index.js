@@ -32,7 +32,7 @@ const HeaderMenu = ({ respScreen }) => {
   const handleLogout = (e) => {
     e.preventDefault();
     dispatch({ type: LOG_OUT });
-    navigate(-1);
+    // navigate(-1);
   };
 
   return (

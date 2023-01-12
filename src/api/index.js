@@ -18,6 +18,8 @@ export const getAllProperties = (page) => API.get(`/property?page=${page}`);
 export const signIn = (user) => API.post(`/user/login`, user);
 export const signUp = (user) => API.post(`/user/signup`, user);
 
+export const createBooking = (booking) => API.post("/booking", booking)
+export const getAllBookings = (page) => API.get(`/booking?page=${page}`);
 
 
 // export const fetchPostsBySearch = (searchQuery) => API.get(`/posts/search?searchQuery=${searchQuery.search || 'none'}&tags=${searchQuery.tags}`)

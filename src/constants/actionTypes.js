@@ -25,3 +25,5 @@ export const SIGN_IN = "SIGN_IN"
 export const AUTH = "AUTH"
 export const LOG_OUT = "LOG_OUT"
 export const FETCH_BY_SEARCH = "FETCH_BY_SEARCH"
+
+export const CREATE_BOOKING = "CREATE_BOOKING"

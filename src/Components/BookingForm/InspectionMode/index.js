@@ -15,7 +15,7 @@ const inspectionData = [
   },
 ];
 
-const InspectionMode = ({ setBooking, booking }) => {
+const InspectionMode = ({ setBooking, booking, values, setValues }) => {
   const [activeMode, setActiveMode] = React.useState();
 
   const handleInspectionMode = (mode) => {
@@ -35,7 +35,7 @@ const InspectionMode = ({ setBooking, booking }) => {
         />
       ))}
       {booking.mode === "physical" || booking.mode === "virtual" ? (
-        <InspectionDate booking={booking} setBooking={setBooking}/>
+        <InspectionDate booking={booking} setBooking={setBooking} values={values} setValues={setValues}/>
       ) : (
         ""
       )}

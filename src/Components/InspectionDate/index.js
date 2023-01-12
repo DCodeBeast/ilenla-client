@@ -4,13 +4,13 @@ import DatePicker from "react-multi-date-picker";
 import DatePanel from "react-multi-date-picker/plugins/date_panel";
 import TimePicker from "react-multi-date-picker/plugins/time_picker";
 import transition from "react-element-popper/animations/transition";
-export default function InspectionDate({ setBooking, booking }) {
+export default function InspectionDate({ setBooking, booking, values, setValues }) {
   const today = new Date();
   const tomorrow = new Date();
 
   tomorrow.setDate(tomorrow.getDate() + 1);
 
-  const [values, setValues] = useState([]);
+  // const [values, setValues] = useState([]);
   const [time, setTime] = useState();
 
   const [portalTarget, setPortalTaget] = useState();
@@ -19,7 +19,12 @@ export default function InspectionDate({ setBooking, booking }) {
     let appt = [];
     if (booking.inspectionDays && values.length === 0) {
       console.log("days63646264", values, 1);
-
+      setBooking({
+        ...booking,
+        inspectionDays: [...values],
+        appointmentDays: [...appt],
+      });
+ 
       return;
     } else {
       console.log("days63646264", values, booking.inspectionDays, 2);
@@ -92,7 +97,7 @@ export default function InspectionDate({ setBooking, booking }) {
           plugins={[<DatePanel />]}
           value={
             booking.inspectionDays.length > 3 
-              ? booking.inspectionDays.splice(3)
+              ? booking.inspectionDays.splice(3) 
               : booking.inspectionDays
           }
           animations={[transition({ duration: 800, from: 35 })]}

@@ -9,7 +9,7 @@ import Check from "@mui/icons-material/Check";
 import SettingsIcon from "@mui/icons-material/Settings";
 import GroupAddIcon from "@mui/icons-material/GroupAdd";
 import VideoLabelIcon from "@mui/icons-material/VideoLabel";
-import ReplyAllIcon from '@mui/icons-material/ReplyAll';
+import ReplyAllIcon from "@mui/icons-material/ReplyAll";
 import StepConnector, {
   stepConnectorClasses,
 } from "@mui/material/StepConnector";
@@ -29,7 +29,7 @@ import InspectionMode from "../InspectionMode";
 import { PaystackButton } from "react-paystack";
 import BookingReview from "../BookingReview";
 
-import './styles.css'
+import "./styles.css";
 
 const QontoConnector = styled(StepConnector)(({ theme }) => ({
   [`&.${stepConnectorClasses.alternativeLabel}`]: {
@@ -194,15 +194,18 @@ const steps = [
 
 export default function BookingFlow() {
   const dispatch = useDispatch();
-  const [startDate, setStartDate] = useState(new Date());
+  let user = JSON.parse(localStorage.getItem("profile"));
+
   let { cart } = useSelector((state) => state.cart);
   const { cartTotal } = useSelector((state) => state.cart);
+  const [values, setValues] = useState([]);
+
   const [booking, setBooking] = useState({
     properties: [],
     mode: "",
     inspectionDays: [],
     inspectionTime: "",
-    email: "",
+    email: user?.user?.email,
     userId: "",
     userPhone: "",
     userAddress: "",
@@ -210,20 +213,22 @@ export default function BookingFlow() {
     pay_stack_ref: "",
     amount_due: null,
     payment_method: null,
-    payment_status: "",
+    payment_status: "pending",
+    paystack_details:[],
     appointmentDays: [],
   });
 
   const config = {
     reference: new Date().getTime().toString(),
-    email: booking.email,
-    amount: Number(booking?.amount_paid * 100)?.toFixed(2),
+    email: booking?.email,
+    amount: Number(booking?.cartTotal * 100)?.toFixed(2),
     metadata: {
-      amount_paid: Number(booking?.amount_paid)?.toFixed(2),
+      amount_paid: Number(booking?.cartTotal)?.toFixed(2),
     },
 
     publicKey: "pk_test_cd5d1c48e331b8a865065248be6c5292f510e932",
   };
+
 
   useEffect(() => {
     dispatch({ type: ADD_TO_CART });
@@ -231,6 +236,12 @@ export default function BookingFlow() {
   useEffect(() => {
     setBooking({ ...booking, properties: [...cart] });
   }, [cart]);
+  useEffect(() => {
+    setBooking({ ...booking, amount_due:cartTotal });
+  }, [cartTotal]);
+  useEffect(() => {
+    setBooking({ ...booking, email: user?.user?.email });
+  }, [user?.user?.email]);
 
   console.log("booking", booking);
   console.log(
@@ -269,6 +280,9 @@ export default function BookingFlow() {
 
   const handleBack = () => {
     setActiveStep((prevActiveStep) => prevActiveStep - 1);
+    if (activeStep === 2) {
+      setValues([...booking.inspectionDays]);
+    }
   };
 
   const handleStep = (step) => () => {
@@ -287,24 +301,25 @@ export default function BookingFlow() {
     setCompleted({});
   };
 
-  const handlePaystackSuccessAction = (reference) => {
-    // Implementation for whatever you want to do with reference and after success call.
-    // setOrderData({ ...orderData, pay_stack_ref: reference?.reference });
-  };
+  // const handlePaystackSuccessAction = (reference) => {
+  //   // Implementation for whatever you want to do with reference and after success call.
+  //   // setOrderData({ ...orderData, pay_stack_ref: reference?.reference });
+  // };
 
   // you can call this function anything
-  const handlePaystackCloseAction = () => {
-    // implementation for  whatever you want to do when the Paystack dialog closed.
-    // console.log('closed')
-  };
+  // const handlePaystackCloseAction = () => {
+  //   // implementation for  whatever you want to do when the Paystack dialog closed.
+  //   // console.log('closed')
+  // };
 
-  const componentProps = {
-    ...config,
-    text: "Proceed To Checkout",
-    onSuccess: (reference) => handlePaystackSuccessAction(reference),
-    onClose: handlePaystackCloseAction,
-  };
+  // const componentProps = {
+  //   ...config,
+  //   text: "Proceed To Checkout",
+  //   onSuccess: (reference) => handlePaystackSuccessAction(reference),
+  //   onClose: handlePaystackCloseAction,
+  // };
 
+  console.log("dhhhhf", booking);
   return (
     <Box sx={{ width: "100%" }} spacing={4}>
       <Stepper
@@ -369,10 +384,10 @@ export default function BookingFlow() {
                       <Button
                         variant="contained"
                         endIcon={<ControlPointIcon />}
-                        size='small'
-                        as='a'
-                        href='/properties'
-                        className='back-btn'
+                        size="small"
+                        as="a"
+                        href="/properties"
+                        className="back-btn"
                       >
                         Add More
                       </Button>
@@ -389,7 +404,6 @@ export default function BookingFlow() {
               )}
               {activeStep === 1 && (
                 <Grid>
-              
                   <Grid
                     container
                     justifyContent="space-between"
@@ -397,18 +411,16 @@ export default function BookingFlow() {
                     className="bookingTitle"
                     px={2}
                   >
-                    <Grid>
-                    Choose Inspection Mode
-                    </Grid>
+                    <Grid>Choose Inspection Mode</Grid>
 
                     <Grid>
                       <Button
                         variant="contained"
                         endIcon={<ReplyAllIcon />}
-                        size='small'
-                        as='a'
-                        href='/properties'
-                        className='back-btn'
+                        size="small"
+                        as="a"
+                        href="/properties"
+                        className="back-btn"
                       >
                         Back To Properties
                       </Button>
@@ -416,7 +428,12 @@ export default function BookingFlow() {
                   </Grid>
 
                   <Grid className="bookingContentArea" py={5}>
-                    <InspectionMode setBooking={setBooking} booking={booking} />
+                    <InspectionMode
+                      setBooking={setBooking}
+                      booking={booking}
+                      values={values}
+                      setValues={setValues}
+                    />
                     {/* <DatePicker
                       selected={startDate}
                       onChange={(date) => setStartDate(date)}
@@ -457,18 +474,16 @@ export default function BookingFlow() {
                     className="bookingTitle"
                     px={2}
                   >
-                    <Grid>
-                    Review Your Appointment
-                    </Grid>
+                    <Grid>Review Your Appointment</Grid>
 
                     <Grid>
                       <Button
                         variant="contained"
                         endIcon={<ReplyAllIcon />}
-                        size='small'
-                        as='a'
-                        href='/properties'
-                        className='back-btn'
+                        size="small"
+                        as="a"
+                        href="/properties"
+                        className="back-btn"
                       >
                         Back To Properties
                       </Button>
@@ -477,11 +492,12 @@ export default function BookingFlow() {
 
                   <Grid className="bookingContentArea" py={5}>
                     <BookingReview
-                      config={config}
-                      handlePaystackCloseAction={handlePaystackCloseAction}
-                      handlePaystackSuccessAction={handlePaystackSuccessAction}
+                     
+                    
                       appointmentDays={booking.inspectionDays}
                       inspectionTime={booking.inspectionTime}
+                      booking={booking}
+                      setBooking={setBooking}
                     />
                     {/* <PaystackButton
                       className="cart-checkout"
@@ -513,10 +529,31 @@ export default function BookingFlow() {
                 Back
               </Button>
               <Box sx={{ flex: "1 1 auto" }} />
-              <Button className="nextBtn" onClick={handleNext} sx={{ mr: 1 }}>
+              <Button
+                className="nextBtn"
+                onClick={handleNext}
+                sx={{ mr: 1 }}
+                disabled={
+                  (activeStep === 0 && cart?.length === 0) ||
+                  (activeStep === 1 &&
+                    booking.mode !== "report" &&
+                    ((activeStep === 1 && booking.mode !== "physical") ||
+                      booking.inspectionDays.length === 0 ||
+                      !booking.inspectionTime) &&
+                    ((activeStep === 1 && booking.mode !== "virtual") ||
+                      booking.inspectionDays.length === 0 ||
+                      !booking.inspectionTime)) ||
+                  (activeStep === 2 &&
+                    booking.payment_method !== "onsite" &&
+                    ((activeStep === 2 &&
+                      booking.payment_method !== "paystack") ||
+                      booking.payment_status !== "paid"))
+                }
+              >
                 Next
+                
               </Button>
-              {activeStep !== steps.length &&
+              {/* {activeStep !== steps.length &&
                 (completed[activeStep] ? (
                   <Typography
                     variant="caption"
@@ -530,7 +567,7 @@ export default function BookingFlow() {
                       ? "Finish"
                       : "Complete Step"}
                   </Button>
-                ))}
+                ))} */}
             </Box>
           </Grid>
         )}
